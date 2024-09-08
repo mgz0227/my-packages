@@ -173,6 +173,13 @@ if [ -n "$(command -v nginx)" ]; then
 	fi
 fi
 
+if [ -z "`uci -q get dhcp.default_server`" ]; then
+	uci -q set dhcp.default_server=domain
+	uci -q set dhcp.default_server.name='miaogongzi'
+	uci -q set dhcp.default_server.ip='192.168.3.1'
+	uci -q set dhcp.default_server.comments='后台地址'
+	uci commit dhcp
+fi
 
 
 grep -q "uwsgi_read_timeout" /etc/nginx/conf.d/luci.locations 2>/dev/null || {
