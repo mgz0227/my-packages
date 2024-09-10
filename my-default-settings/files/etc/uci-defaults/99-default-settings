@@ -198,8 +198,8 @@ sed -i "s/large_client_header_buffers 2 1k/large_client_header_buffers 4 512k/" 
 fi
 
 rm -rf /tmp/luci-*
-uci -q set base_config.@status[0].version=$version
-uci commit base_config
+#uci -q set base_config.@status[0].version=$version
+#uci commit base_config
 
 modprobe xt_FULLCONENAT || {
 [ "$(iptables -L -t nat | grep "FULLCONENAT")" ] || {
